@@ -1,0 +1,58 @@
+
+
+Course Project: Sums
+========================================================
+author: Heather Murray
+date: March 20, 2015
+
+My Project
+========================================================
+
+My course project is a few macaronis short of passing first grade.
+
+- It takes the input of two sliders and sums them
+- Easy peasy
+
+My ui.R
+========================================================
+
+```{r, ui}
+library(shiny)
+shinyUI(fluidPage(
+  titlePanel("Course Project"),
+  sidebarLayout(
+    sidebarPanel("sidebar",
+    sliderInput("n_1", label = "First Number", min = 0, max = 100, value = 5, step = 1),
+    sliderInput("n_2", label = "Number2", min = 0, max = 100, value = 5, step = 1)
+  ),
+        mainPanel("Your Sum Is",
+        textOutput("text1")
+        )
+        )
+)
+)  
+```
+
+My server.R
+========================================================
+
+```{r, server}
+shinyServer(function(input, output){
+  output$text1 <- renderText({
+    paste("your input sums to", sum(input$n_1, input$n_2))
+    })
+                              
+})
+
+
+```
+
+Why do we need this? 
+========================================================
+```{r plot, echo=FALSE}
+x <- c(1:50)
+y <- c(50:99)
+plot(x,y, xlab = "age", ylab = "apparent difficulty of algebra", main = "Math as we age", type = "l")
+```
+THE END
+========================================================
